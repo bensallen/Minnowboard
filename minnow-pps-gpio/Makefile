@@ -1,11 +1,12 @@
 KDIR ?= /lib/modules/`uname -r`/build
+PPS_GPIO ?= 483
 
 obj-m := minnow-pps-gpio.o
 
 SRC := $(shell pwd)
 
 all:
-	$(MAKE) -C $(KDIR) M=$(SRC)
+	$(MAKE) -C $(KDIR) M=$(SRC) CFLAGS_minnow-pps-gpio.o="-DPPS_GPIO=$(PPS_GPIO)"
 
 modules_install:
 	$(MAKE) -C $(KDIR) M=$(SRC) modules_install

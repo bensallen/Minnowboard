@@ -23,8 +23,9 @@
         #error PPS_CLIENT_GPIO is required.
 #endif
 
-/* Change this values to what your board uses. */
-#define PPS_GPIO 483
+#if !defined(PPS_GPIO)
+	#error PPS_GPIO must be defined to the GPIO pin your board uses
+#endif
 
 static struct pps_gpio_platform_data pps_gpio_info = {
 	.assert_falling_edge	= false,
